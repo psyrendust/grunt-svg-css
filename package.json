@@ -31,7 +31,7 @@
     "xmldom": "0.1.19"
   },
   "devDependencies": {
-    "grunt": "^0.4.1",
+    "grunt": "~0.4.1",
     "grunt-contrib-clean": "0.6.0",
     "grunt-contrib-nodeunit": "0.4.1",
     "grunt-eslint": "1.1.0"
