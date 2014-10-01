@@ -72,7 +72,7 @@ Example of `css.hbs` file contents:
 ```handlebars
 {{#each icons}}
 {{#with this}}
-{{prefix}}{{name}} { background-image: url('{{datauri}}'); background-repeat: no-repeat; }
+{{prefix}}{{name}} { background-image: url("{{datauri}}"); background-repeat: no-repeat; }
 {{/with}}
 {{/each}}
 ```
