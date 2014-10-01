@@ -42,9 +42,9 @@ grunt.initConfig({
 
 #### options.eol
 Type: `String`  
-Default value: `'lf'`  
+Default value: `null`  
 
-The line ending you would like to convert to.
+The line ending you would like to convert to. Defaults to system line endings returned by `grunt.util.linefeed`.
 
 | Optional Values | Converts To |
 |-----------------|-------------|

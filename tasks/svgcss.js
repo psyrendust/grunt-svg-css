@@ -28,13 +28,16 @@ module.exports = function(grunt) {
   var svgdatauri = 'data:image/svg+xml;charset=US-ASCII,';
 
   function getEOL(eol) {
-    if (eol === 'cr') {
-      return '\r';
+    if (eol === 'lf') {
+      return '\n';
     }
     if (eol === 'crlf') {
       return '\r\n';
     }
-    return '\n';
+    if (eol === 'cr') {
+      return '\r';
+    }
+    return grunt.util.linefeed;
   }
 
   /**
@@ -121,7 +124,7 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      eol: 'lf',
+      eol: null,
       cssprefix: 'icon-',
       csstemplate: path.join(root, 'templates', 'css.hbs'),
       defaultWidth: '400px',
