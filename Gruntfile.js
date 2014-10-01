@@ -97,6 +97,126 @@ module.exports = function(grunt) {
         files: {
           'tmp/noPreviewhtml.css': ['test/fixtures/*.svg']
         }
+      },
+      minifycss: {
+        options: {
+          minifycss: true,
+          previewhtml: 'minifycss.html'
+        },
+        files: {
+          'tmp/minifycss.css': ['test/fixtures/*.svg']
+        }
+      },
+      banner: {
+        options: {
+          banner: [
+            '/*!',
+            ' * Grunt SVG CSS',
+            ' * ',
+            ' * Licensed under the Apache v2.0 License',
+            ' * http://www.apache.org/licenses/LICENSE-2.0',
+            ' * ',
+            ' */'
+          ].join('\n'),
+          previewhtml: 'banner.html'
+        },
+        files: {
+          'tmp/banner.css': ['test/fixtures/*.svg']
+        }
+      },
+      bannerminifycss: {
+        options: {
+          banner: [
+            '/*!',
+            ' * Grunt SVG CSS',
+            ' * ',
+            ' * Licensed under the Apache v2.0 License',
+            ' * http://www.apache.org/licenses/LICENSE-2.0',
+            ' * ',
+            ' */'
+          ].join('\n'),
+          minifycss: true,
+          previewhtml: 'bannerminifycss.html'
+        },
+        files: {
+          'tmp/bannerminifycss.css': ['test/fixtures/*.svg']
+        }
+      },
+      footer: {
+        options: {
+          footer: [
+            '/*!',
+            ' * Licensed under the Apache v2.0 License',
+            ' * http://www.apache.org/licenses/LICENSE-2.0',
+            ' */'
+          ].join('\n'),
+          previewhtml: 'footer.html'
+        },
+        files: {
+          'tmp/footer.css': ['test/fixtures/*.svg']
+        }
+      },
+      footerminifycss: {
+        options: {
+          footer: [
+            '/*!',
+            ' * Licensed under the Apache v2.0 License',
+            ' * http://www.apache.org/licenses/LICENSE-2.0',
+            ' */'
+          ].join('\n'),
+          minifycss: true,
+          previewhtml: 'footerminifycss.html'
+        },
+        files: {
+          'tmp/footerminifycss.css': ['test/fixtures/*.svg']
+        }
+      },
+      bannerfooter: {
+        options: {
+          banner: [
+            '/*!',
+            ' * Grunt SVG CSS',
+            ' * ',
+            ' * Licensed under the Apache v2.0 License',
+            ' * http://www.apache.org/licenses/LICENSE-2.0',
+            ' * ',
+            ' */'
+          ].join('\n'),
+          footer: [
+            '/*!',
+            ' * Licensed under the Apache v2.0 License',
+            ' * http://www.apache.org/licenses/LICENSE-2.0',
+            ' */'
+          ].join('\n'),
+          previewhtml: 'bannerfooter.html'
+        },
+        files: {
+          'tmp/bannerfooter.css': ['test/fixtures/*.svg']
+        }
+      },
+      bannerfooterminifycss: {
+        options: {
+          banner: [
+            '/*!',
+            ' * Grunt SVG CSS',
+            ' * ',
+            ' * Licensed under the Apache v2.0 License',
+            ' * http://www.apache.org/licenses/LICENSE-2.0',
+            ' * ',
+            ' */'
+          ].join('\n'),
+          footer: [
+            '/*!',
+            ' * Licensed under the Apache v2.0 License',
+            ' * http://www.apache.org/licenses/LICENSE-2.0',
+            ' */'
+          ].join('\n'),
+          minifycss: true,
+          previewhtml: 'bannerfooterminifycss.html'
+        },
+        files: {
+          'tmp/bannerfooterminifycss.css': ['test/fixtures/*.svg']
+        }
       }
     },
 
