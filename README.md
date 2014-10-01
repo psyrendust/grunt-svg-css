@@ -42,9 +42,9 @@ grunt.initConfig({
 
 #### options.eol
 Type: `String`  
-Default value: `'lf'`  
+Default value: `null`  
 
-The line ending you would like to convert to.
+The line ending you would like to convert to. Defaults to system line endings returned by `grunt.util.linefeed`.
 
 | Optional Values | Converts To |
 |-----------------|-------------|
@@ -154,11 +154,25 @@ Default: `""`
 Append the specified string to the output file.
 
 
+#### options.minifycss
+Type: `Boolean`  
+Default: `false`  
+
+If `true` minify CSS output using [clean-css](https://github.com/GoalSmashers/clean-css).
+
+
 #### options.insertfinalnewline
 Type: `Boolean`  
 Default: `false`  
 
 If `true` output files will end with a newline.
+
+
+#### options.keepSpecialComments
+Type: `String` `Number`  
+Default: `'*'`  
+
+To keep or remove special comments, exposing the underlying option from [clean-css](https://github.com/GoalSmashers/clean-css). `'*'` for keeping all (default), `1` for keeping first one only, `0` for removing all.
 
 
 ### Handlebars Variables

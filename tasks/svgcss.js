@@ -1,10 +1,9 @@
 'use strict';
 /*
- * grunt-eol
- * https://github.com/psyrendust/grunt-eol
+ * grunt-svg-css
+ * https://github.com/psyrendust/grunt-svg-css
  *
- * Copyright (c) 2013 Larry Gordon
- * Licensed under the MIT license.
+ * http://psyrendust.mit-license.org/2014/license.html
  */
 
 
@@ -12,6 +11,7 @@ module.exports = function(grunt) {
 
   var fs = require('fs');
   var path = require('path');
+  var CleanCSS = require('clean-css');
   var Handlebars = require('handlebars');
   var DOMParser = require('xmldom').DOMParser;
   var root = path.dirname(__dirname);
@@ -23,18 +23,43 @@ module.exports = function(grunt) {
   var pxReg = /([\d\.]+)\D*/;
   var singleQuoteReg = /'/gmi;
   var tabReg = /\t/gmi;
-  var whitespaceReg = /\s/gm;
-  var trailingSemicolon = /;}/gm;
   var svgdatauri = 'data:image/svg+xml;charset=US-ASCII,';
 
+  /**
+   * Returns the correct linefeed.
+   *
+   * @method  getEOL
+   * @param   {String}  eol  A shortname used to determine the linefeed to return.
+   * @return  {String}
+   */
   function getEOL(eol) {
-    if (eol === 'cr') {
-      return '\r';
+    if (eol === 'lf') {
+      return '\n';
     }
     if (eol === 'crlf') {
       return '\r\n';
     }
-    return '\n';
+    if (eol === 'cr') {
+      return '\r';
+    }
+    return grunt.util.linefeed;
+  }
+
+  /**
+   * Minify css using `clean-css`.
+   *
+   * @method  minify
+   * @param   {String}  source   The CSS to minify.
+   * @param   {Object}  options  Options to pass to `clean-css`.
+   * @return  {String}
+   */
+  function minify(source, options) {
+    try {
+      return new CleanCSS(options).minify(source);
+    } catch (err) {
+      grunt.log.error(err);
+      grunt.fail.warn('CSS minification failed.');
+    }
   }
 
   /**
@@ -51,7 +76,16 @@ module.exports = function(grunt) {
       .replace(singleQuoteReg, '\\i'));
   }
 
-  function processFile(options, filepath) {
+  /**
+   * Reads an SVG file and returns an object that contains the name, datauri,
+   * prefix, prefixClass, width and height.
+   *
+   * @method  processSvgFile
+   * @param   {[type]}        filepath  The location of the SVG file to process.
+   * @param   {Object}        options   Options to augment the return object.
+   * @return  {Object}
+   */
+  function processSvgFile(filepath, options) {
     var data = fs.readFileSync(filepath).toString() || '';
     var doc = new DOMParser().parseFromString(data ,'text/xml');
     var svgel = doc.getElementsByTagName('svg')[0];
@@ -75,6 +109,16 @@ module.exports = function(grunt) {
     };
   }
 
+  /**
+   * Creates a new file.
+   *
+   * @method  createFile
+   * @param   {Boolean}   isCss        Processes CSS specific options if true.
+   * @param   {Object}    options      The options object from the grunt task.
+   * @param   {Object}    data         The data used to populate the Handlebars template.
+   * @param   {String}    destination  The location to save the file to.
+   * @param   {Function}  callback     Call this function after the file has been created.
+   */
   function createFile(isCss, options, data, destination, callback) {
     var hbsTemplate = isCss ? options.csstemplate : options.previewtemplate;
     var template = Handlebars.compile(grunt.file.read(path.normalize(hbsTemplate)));
@@ -83,15 +127,15 @@ module.exports = function(grunt) {
 
     // Only minify css
     if (isCss && options.minifycss) {
-      file = file
-        .replace(newlinesReg, '')
-        .replace(whitespaceReg, '')
-        .replace(trailingSemicolon, '}');
+      file = minify(file, {
+        keepSpecialComments: options.keepSpecialComments
+      });
     } else {
-      file = file
-        .replace(newlinesReg, eol)
-        .replace(newlineEndOfFileReg, '');
+      file = file.replace(newlinesReg, eol);
     }
+
+    // Remove any newlines at the end of the file
+    file = file.replace(newlineEndOfFileReg, '');
 
     // Only add banner and footer to css
     if (isCss) {
@@ -102,7 +146,8 @@ module.exports = function(grunt) {
         file = file + eol + options.footer;
       }
     }
-    // Insert final newline
+
+    // Insert final newline if true
     if (options.insertfinalnewline) {
       file = file + eol;
     }
@@ -121,7 +166,7 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      eol: 'lf',
+      eol: null,
       cssprefix: 'icon-',
       csstemplate: path.join(root, 'templates', 'css.hbs'),
       defaultWidth: '400px',
@@ -131,7 +176,8 @@ module.exports = function(grunt) {
       minifycss: false,
       banner: '',
       footer: '',
-      insertfinalnewline: false
+      insertfinalnewline: false,
+      keepSpecialComments: '*'
     });
 
     // Iterate over all specified file groups.
@@ -150,7 +196,7 @@ module.exports = function(grunt) {
         }
       }).forEach(function(filepath) {
         if (grunt.file.isFile(filepath)) {
-          results.icons.push(processFile(options, filepath));
+          results.icons.push(processSvgFile(filepath, options));
         }
       });
 
