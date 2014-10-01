@@ -1,0 +1,22 @@
+<!doctype HTML>
+<html>
+<head>
+  <title>Icons Preview!</title>
+  <style>
+    body {
+      background-image: linear-gradient(#eee 25%, transparent 25%, transparent), linear-gradient(#eee 25%, transparent 25%, transparent), linear-gradient(transparent 75%, #eee 75%), linear-gradient(transparent 75%, #eee 75%);
+      width: 100%;
+      background-size: 10px 10px;
+    }
+  </style>
+  <link href="{{cssfile}}" rel="stylesheet">
+</head>
+<body>
+  <h1>This is a test!</h1>
+{{#each icons}}
+  {{#with this}}
+  <pre><code>{{prefix}}{{name}}:</code></pre><div class="{{prefixClass}}{{name}}" style="width: {{width}}; height: {{height}};" ></div><hr/>
+  {{/with}}
+{{/each}}
+</body>
+</html>
