@@ -89,5 +89,61 @@ exports.test = {
     test.equal(grunt.file.read('tmp/noPreviewhtml.css'), expectedCss, 'noPreviewhtml.css');
     test.ok(!grunt.file.exists('test/expected/noPreviewhtml.html'), 'noPreviewhtml.html should not exist');
     test.done();
+  },
+  minifycss: function (test) {
+    test.expect(2);
+    var expectedCss = grunt.file.read('test/expected/minifycss.css');
+    var expectedHtml = grunt.file.read('test/expected/minifycss.html');
+    test.equal(grunt.file.read('tmp/minifycss.css'), expectedCss, 'minifycss.css');
+    test.equal(grunt.file.read('tmp/minifycss.html'), expectedHtml, 'minifycss.html');
+    test.done();
+  },
+  banner: function (test) {
+    test.expect(2);
+    var expectedCss = grunt.file.read('test/expected/banner.css');
+    var expectedHtml = grunt.file.read('test/expected/banner.html');
+    test.equal(grunt.file.read('tmp/banner.css'), expectedCss, 'banner.css');
+    test.equal(grunt.file.read('tmp/banner.html'), expectedHtml, 'banner.html');
+    test.done();
+  },
+  bannerminifycss: function (test) {
+    test.expect(2);
+    var expectedCss = grunt.file.read('test/expected/bannerminifycss.css');
+    var expectedHtml = grunt.file.read('test/expected/bannerminifycss.html');
+    test.equal(grunt.file.read('tmp/bannerminifycss.css'), expectedCss, 'bannerminifycss.css');
+    test.equal(grunt.file.read('tmp/bannerminifycss.html'), expectedHtml, 'bannerminifycss.html');
+    test.done();
+  },
+  footer: function (test) {
+    test.expect(2);
+    var expectedCss = grunt.file.read('test/expected/footer.css');
+    var expectedHtml = grunt.file.read('test/expected/footer.html');
+    test.equal(grunt.file.read('tmp/footer.css'), expectedCss, 'footer.css');
+    test.equal(grunt.file.read('tmp/footer.html'), expectedHtml, 'footer.html');
+    test.done();
+  },
+  footerminifycss: function (test) {
+    test.expect(2);
+    var expectedCss = grunt.file.read('test/expected/footerminifycss.css');
+    var expectedHtml = grunt.file.read('test/expected/footerminifycss.html');
+    test.equal(grunt.file.read('tmp/footerminifycss.css'), expectedCss, 'footerminifycss.css');
+    test.equal(grunt.file.read('tmp/footerminifycss.html'), expectedHtml, 'footerminifycss.html');
+    test.done();
+  },
+  bannerfooter: function (test) {
+    test.expect(2);
+    var expectedCss = grunt.file.read('test/expected/bannerfooter.css');
+    var expectedHtml = grunt.file.read('test/expected/bannerfooter.html');
+    test.equal(grunt.file.read('tmp/bannerfooter.css'), expectedCss, 'bannerfooter.css');
+    test.equal(grunt.file.read('tmp/bannerfooter.html'), expectedHtml, 'bannerfooter.html');
+    test.done();
+  },
+  bannerfooterminifycss: function (test) {
+    test.expect(2);
+    var expectedCss = grunt.file.read('test/expected/bannerfooterminifycss.css');
+    var expectedHtml = grunt.file.read('test/expected/bannerfooterminifycss.html');
+    test.equal(grunt.file.read('tmp/bannerfooterminifycss.css'), expectedCss, 'bannerfooterminifycss.css');
+    test.equal(grunt.file.read('tmp/bannerfooterminifycss.html'), expectedHtml, 'bannerfooterminifycss.html');
+    test.done();
   }
 };

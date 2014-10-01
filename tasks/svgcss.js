@@ -23,6 +23,8 @@ module.exports = function(grunt) {
   var pxReg = /([\d\.]+)\D*/;
   var singleQuoteReg = /'/gmi;
   var tabReg = /\t/gmi;
+  var whitespaceReg = /\s/gm;
+  var trailingSemicolon = /;}/gm;
   var svgdatauri = 'data:image/svg+xml;charset=US-ASCII,';
 
   function getEOL(eol) {
@@ -73,11 +75,30 @@ module.exports = function(grunt) {
     };
   }
 
-  function createFile(hbsTemplate, data, destination, eol, callback) {
+  function createFile(isCss, options, data, destination, callback) {
+    var hbsTemplate = isCss ? options.csstemplate : options.previewtemplate;
     var template = Handlebars.compile(grunt.file.read(path.normalize(hbsTemplate)));
     var file = template(data);
-    file = file.replace(newlinesReg, getEOL(eol));
-    file = file.replace(newlineEndOfFileReg, '');
+    // Only minify css
+    if (isCss && options.minifycss) {
+      file = file
+        .replace(newlinesReg, '')
+        .replace(whitespaceReg, '')
+        .replace(trailingSemicolon, '}');
+    } else {
+      file = file
+        .replace(newlinesReg, getEOL(options.eol))
+        .replace(newlineEndOfFileReg, '');
+    }
+    // Only add banner and footer to css
+    if (isCss) {
+      if (options.banner && options.banner.length > 0) {
+        file = options.banner + getEOL(options.eol) + file;
+      }
+      if (options.footer && options.footer.length > 0) {
+        file = file + getEOL(options.eol) + options.footer;
+      }
+    }
     // Write the destination file.
     grunt.log.write('Creating '.cyan + destination + '...');
     grunt.file.write(destination, file);
@@ -98,7 +119,10 @@ module.exports = function(grunt) {
       defaultWidth: '400px',
       defaultHeight: '300px',
       previewhtml: 'preview.html',
-      previewtemplate: path.join(root, 'templates', 'preview.hbs')
+      previewtemplate: path.join(root, 'templates', 'preview.hbs'),
+      minifycss: false,
+      banner: '',
+      footer: ''
     });
 
     // Iterate over all specified file groups.
@@ -122,10 +146,10 @@ module.exports = function(grunt) {
       });
 
       // Create CSS file
-      createFile(options.csstemplate, results, f.dest, options.eol, function() {
+      createFile(true, options, results, f.dest, function() {
         // Create preview.html file
         if (options.previewhtml) {
-          createFile(options.previewtemplate, results, path.join(path.dirname(f.dest), options.previewhtml), options.eol, done);
+          createFile(false, options, results, path.join(path.dirname(f.dest), options.previewhtml), done);
         } else {
           done();
         }
