@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       toLf: {
         options: {
           eol: 'lf',
-          previewhtml: 'toLF.html'
+          previewhtml: 'toLf.html'
         },
         files: {
           'tmp/toLf.css': ['test/fixtures/*.svg']
