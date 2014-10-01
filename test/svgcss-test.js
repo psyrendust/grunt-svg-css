@@ -145,5 +145,13 @@ exports.test = {
     test.equal(grunt.file.read('tmp/bannerfooterminifycss.css'), expectedCss, 'bannerfooterminifycss.css');
     test.equal(grunt.file.read('tmp/bannerfooterminifycss.html'), expectedHtml, 'bannerfooterminifycss.html');
     test.done();
+  },
+  insertfinalnewline: function (test) {
+    test.expect(2);
+    var expectedCss = grunt.file.read('test/expected/insertfinalnewline.css');
+    var expectedHtml = grunt.file.read('test/expected/insertfinalnewline.html');
+    test.equal(grunt.file.read('tmp/insertfinalnewline.css'), expectedCss, 'insertfinalnewline.css');
+    test.equal(grunt.file.read('tmp/insertfinalnewline.html'), expectedHtml, 'insertfinalnewline.html');
+    test.done();
   }
 };

@@ -78,7 +78,9 @@ module.exports = function(grunt) {
   function createFile(isCss, options, data, destination, callback) {
     var hbsTemplate = isCss ? options.csstemplate : options.previewtemplate;
     var template = Handlebars.compile(grunt.file.read(path.normalize(hbsTemplate)));
+    var eol = getEOL(options.eol);
     var file = template(data);
+
     // Only minify css
     if (isCss && options.minifycss) {
       file = file
@@ -87,18 +89,24 @@ module.exports = function(grunt) {
         .replace(trailingSemicolon, '}');
     } else {
       file = file
-        .replace(newlinesReg, getEOL(options.eol))
+        .replace(newlinesReg, eol)
         .replace(newlineEndOfFileReg, '');
     }
+
     // Only add banner and footer to css
     if (isCss) {
       if (options.banner && options.banner.length > 0) {
-        file = options.banner + getEOL(options.eol) + file;
+        file = options.banner + eol + file;
       }
       if (options.footer && options.footer.length > 0) {
-        file = file + getEOL(options.eol) + options.footer;
+        file = file + eol + options.footer;
       }
     }
+    // Insert final newline
+    if (options.insertfinalnewline) {
+      file = file + eol;
+    }
+
     // Write the destination file.
     grunt.log.write('Creating '.cyan + destination + '...');
     grunt.file.write(destination, file);
@@ -122,7 +130,8 @@ module.exports = function(grunt) {
       previewtemplate: path.join(root, 'templates', 'preview.hbs'),
       minifycss: false,
       banner: '',
-      footer: ''
+      footer: '',
+      insertfinalnewline: false
     });
 
     // Iterate over all specified file groups.
