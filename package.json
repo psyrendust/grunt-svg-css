@@ -1,7 +1,7 @@
 {
   "name": "grunt-svg-css",
   "description": "Convert a folder of SVG files into a single file using data-uri.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/psyrendust/grunt-svg-css",
   "author": {
     "name": "Larry Gordon"
