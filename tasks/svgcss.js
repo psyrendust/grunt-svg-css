@@ -11,6 +11,7 @@ module.exports = function(grunt) {
 
   var fs = require('fs');
   var path = require('path');
+  var CleanCSS = require('clean-css');
   var Handlebars = require('handlebars');
   var DOMParser = require('xmldom').DOMParser;
   var root = path.dirname(__dirname);
@@ -22,8 +23,6 @@ module.exports = function(grunt) {
   var pxReg = /([\d\.]+)\D*/;
   var singleQuoteReg = /'/gmi;
   var tabReg = /\t/gmi;
-  var whitespaceReg = /\s/gm;
-  var trailingSemicolon = /;}/gm;
   var svgdatauri = 'data:image/svg+xml;charset=US-ASCII,';
 
   function getEOL(eol) {
@@ -40,6 +39,23 @@ module.exports = function(grunt) {
   }
 
   /**
+   * Minify css using `clean-css`.
+   *
+   * @method  minify
+   * @param   {String}  source   The CSS to minify.
+   * @param   {Object}  options  Options to pass to `clean-css`.
+   * @return  {String}
+   */
+  function minify(source, options) {
+    try {
+      return new CleanCSS(options).minify(source);
+    } catch (err) {
+      grunt.log.error(err);
+      grunt.fail.warn('CSS minification failed.');
+    }
+  }
+
+  /**
    * Returns base64 string of svg file.
    * @method  buildSVGDataURI
    * @param   {String}         data  Contents of svg file.
@@ -53,7 +69,16 @@ module.exports = function(grunt) {
       .replace(singleQuoteReg, '\\i'));
   }
 
-  function processFile(options, filepath) {
+  /**
+   * Reads an SVG file and returns an object that contains the name, datauri,
+   * prefix, prefixClass, width and height.
+   *
+   * @method  processSvgFile
+   * @param   {[type]}        filepath  The location of the SVG file to process.
+   * @param   {Object}        options   Options to augment the return object.
+   * @return  {Object}
+   */
+  function processSvgFile(filepath, options) {
     var data = fs.readFileSync(filepath).toString() || '';
     var doc = new DOMParser().parseFromString(data ,'text/xml');
     var svgel = doc.getElementsByTagName('svg')[0];
@@ -85,15 +110,15 @@ module.exports = function(grunt) {
 
     // Only minify css
     if (isCss && options.minifycss) {
-      file = file
-        .replace(newlinesReg, '')
-        .replace(whitespaceReg, '')
-        .replace(trailingSemicolon, '}');
+      file = minify(file, {
+        keepSpecialComments: options.keepSpecialComments
+      });
     } else {
-      file = file
-        .replace(newlinesReg, eol)
-        .replace(newlineEndOfFileReg, '');
+      file = file.replace(newlinesReg, eol);
     }
+
+    // Remove any newlines at the end of the file
+    file = file.replace(newlineEndOfFileReg, '');
 
     // Only add banner and footer to css
     if (isCss) {
@@ -133,7 +158,8 @@ module.exports = function(grunt) {
       minifycss: false,
       banner: '',
       footer: '',
-      insertfinalnewline: false
+      insertfinalnewline: false,
+      keepSpecialComments: '*'
     });
 
     // Iterate over all specified file groups.
@@ -152,7 +178,7 @@ module.exports = function(grunt) {
         }
       }).forEach(function(filepath) {
         if (grunt.file.isFile(filepath)) {
-          results.icons.push(processFile(options, filepath));
+          results.icons.push(processSvgFile(filepath, options));
         }
       });
 

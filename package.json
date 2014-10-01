@@ -27,6 +27,7 @@
     "test": "grunt test"
   },
   "dependencies": {
+    "clean-css": "^2.2.16",
     "handlebars": "2.0.0",
     "xmldom": "0.1.19"
   },

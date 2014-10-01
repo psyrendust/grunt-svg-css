@@ -101,6 +101,7 @@ module.exports = function(grunt) {
       minifycss: {
         options: {
           minifycss: true,
+          csstemplate: 'test/fixtures/css.hbs',
           previewhtml: 'minifycss.html'
         },
         files: {
