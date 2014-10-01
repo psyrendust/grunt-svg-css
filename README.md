@@ -1,4 +1,4 @@
-# grunt-svg-css
+# grunt-svg-css [![Build Status](https://travis-ci.org/psyrendust/grunt-svg-css.svg)](https://travis-ci.org/psyrendust/grunt-svg-css)
 
 > Convert a folder of SVG files into a single file using data-uri.
 
