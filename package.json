@@ -21,7 +21,7 @@
   ],
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "scripts": {
     "test": "grunt test"
@@ -31,14 +31,15 @@
     "xmldom": "0.1.19"
   },
   "devDependencies": {
+    "chalk": "0.5.1",
     "eslint": "0.8.2",
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.5",
     "grunt-contrib-clean": "0.6.0",
     "grunt-contrib-nodeunit": "0.4.1",
     "grunt-eslint": "1.1.0"
   },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.5"
   },
   "keywords": [
     "grunt",
