@@ -1,10 +1,9 @@
 'use strict';
 /*
- * grunt-eol
- * https://github.com/psyrendust/grunt-eol
+ * grunt-svg-css
+ * https://github.com/psyrendust/grunt-svg-css
  *
- * Copyright (c) 2013 Larry Gordon
- * Licensed under the MIT license.
+ * http://psyrendust.mit-license.org/2014/license.html
  */
 
 
