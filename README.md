@@ -147,11 +147,18 @@ Default: `""`
 Append the specified string to the output file.
 
 
-#### options.minifycss
+#### options.footer
+Type: `String`  
+Default: `""`  
+
+Append the specified string to the output file.
+
+
+#### options.insertfinalnewline
 Type: `Boolean`  
 Default: `false`  
 
-Minify's the output css file if set to `true`.
+If `true` output files will end with a newline.
 
 
 ### Handlebars Variables

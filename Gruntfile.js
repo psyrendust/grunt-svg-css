@@ -217,6 +217,15 @@ module.exports = function(grunt) {
         files: {
           'tmp/bannerfooterminifycss.css': ['test/fixtures/*.svg']
         }
+      },
+      insertfinalnewline: {
+        options: {
+          previewhtml: 'insertfinalnewline.html',
+          insertfinalnewline: true
+        },
+        files: {
+          'tmp/insertfinalnewline.css': ['test/fixtures/*.svg']
+        }
       }
     },
 
