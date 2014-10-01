@@ -154,6 +154,13 @@ Default: `""`
 Append the specified string to the output file.
 
 
+#### options.minifycss
+Type: `Boolean`  
+Default: `false`  
+
+If `true` minify CSS output using [clean-css](https://github.com/GoalSmashers/clean-css).
+
+
 #### options.insertfinalnewline
 Type: `Boolean`  
 Default: `false`  
