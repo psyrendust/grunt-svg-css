@@ -25,6 +25,13 @@ module.exports = function(grunt) {
   var tabReg = /\t/gmi;
   var svgdatauri = 'data:image/svg+xml;charset=US-ASCII,';
 
+  /**
+   * Returns the correct linefeed.
+   *
+   * @method  getEOL
+   * @param   {String}  eol  A shortname used to determine the linefeed to return.
+   * @return  {String}
+   */
   function getEOL(eol) {
     if (eol === 'lf') {
       return '\n';
@@ -102,6 +109,16 @@ module.exports = function(grunt) {
     };
   }
 
+  /**
+   * Creates a new file.
+   *
+   * @method  createFile
+   * @param   {Boolean}   isCss        Processes CSS specific options if true.
+   * @param   {Object}    options      The options object from the grunt task.
+   * @param   {Object}    data         The data used to populate the Handlebars template.
+   * @param   {String}    destination  The location to save the file to.
+   * @param   {Function}  callback     Call this function after the file has been created.
+   */
   function createFile(isCss, options, data, destination, callback) {
     var hbsTemplate = isCss ? options.csstemplate : options.previewtemplate;
     var template = Handlebars.compile(grunt.file.read(path.normalize(hbsTemplate)));
@@ -129,7 +146,8 @@ module.exports = function(grunt) {
         file = file + eol + options.footer;
       }
     }
-    // Insert final newline
+
+    // Insert final newline if true
     if (options.insertfinalnewline) {
       file = file + eol;
     }
