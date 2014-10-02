@@ -1,4 +1,6 @@
-# grunt-svg-css [![NPM version](https://badge.fury.io/js/grunt-svg-css.svg)](http://badge.fury.io/js/grunt-svg-css) [![Build Status](https://travis-ci.org/psyrendust/grunt-svg-css.svg)](https://travis-ci.org/psyrendust/grunt-svg-css)
+# grunt-svg-css
+[![NPM version](https://badge.fury.io/js/grunt-svg-css.svg)](http://badge.fury.io/js/grunt-svg-css) [![Build Status](https://travis-ci.org/psyrendust/grunt-svg-css.svg?branch=master)](https://travis-ci.org/psyrendust/grunt-svg-css) [![Build status](https://ci.appveyor.com/api/projects/status/5wlnkm7cm54g53ln/branch/master)](https://ci.appveyor.com/project/psyrendust/grunt-svg-css/branch/master)  
+[![Dependency Status](https://david-dm.org/psyrendust/grunt-svg-css.svg)](https://david-dm.org/psyrendust/grunt-svg-css) [![devDependency Status](https://david-dm.org/psyrendust/grunt-svg-css/dev-status.svg)](https://david-dm.org/psyrendust/grunt-svg-css#info=devDependencies) [![peerDependency Status](https://david-dm.org/psyrendust/grunt-svg-css/peer-status.svg)](https://david-dm.org/psyrendust/grunt-svg-css#info=peerDependencies)
 
 > Convert a folder of SVG files into a single file using data-uri.
 
