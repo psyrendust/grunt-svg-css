@@ -201,7 +201,7 @@ module.exports = function(grunt) {
       });
 
       // Create CSS file
-      createFile(true, options, results, f.dest, function() {
+      createFile(true, options, results, path.join(f.dest), function() {
         // Create preview.html file
         if (options.previewhtml) {
           createFile(false, options, results, path.join(path.dirname(f.dest), options.previewhtml), done);
