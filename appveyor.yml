@@ -1,0 +1,70 @@
+# Notes:
+#   - Minimal appveyor.yml file is an empty file. All sections are optional.
+#   - Indent each level of configuration with 2 spaces. Do not use tabs!
+#   - All section names are case-sensitive.
+#   - Section names should be unique on each level.
+# http://www.appveyor.com/docs/appveyor-yml
+
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+project_id: "5wlnkm7cm54g53ln"
+
+# build version format
+version: "{build}"
+
+# branches to build
+branches:
+  # whitelist
+  only:
+    - master
+    - develop
+
+  # blacklist
+  except:
+    - gh-pages
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+# Operating system (build VM template)
+os: Windows Server 2012
+
+# scripts that are called at very beginning, before repo cloning
+init:
+  # fix lineendings in Windows
+  - git config --global core.autocrlf input
+
+# what combinations to test
+environment:
+  matrix:
+    - nodejs_version: 0.10
+
+# scripts that run after cloning repository
+install:
+  # Get the latest stable version of Node 0.STABLE.latest
+  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version)
+  - npm install -g grunt-cli
+  - npm install
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform:
+  - x86
+  - x64
+  - Any CPU
+
+# to disable automatic builds
+build: off
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+# to run your custom scripts instead of automatic tests
+test_script:
+  - node --version
+  - npm --version
+  - ps: grunt test --no-color # PowerShell
+  - cmd: grunt test --no-color
