@@ -1,6 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
+var path = require('path');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -29,129 +30,129 @@ exports.test = {
   },
   defaultOptions: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/defaultOptions.css');
-    var expectedHtml = grunt.file.read('test/expected/preview.html');
-    test.equal(grunt.file.read('tmp/defaultOptions.css'), expectedCss, 'default defaultOptions.css');
-    test.equal(grunt.file.read('tmp/preview.html'), expectedHtml, 'default preview.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/defaultOptions.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/preview.html'));
+    test.equal(grunt.file.read(path.join('tmp/defaultOptions.css')), expectedCss, 'default defaultOptions.css');
+    test.equal(grunt.file.read(path.join('tmp/preview.html')), expectedHtml, 'default preview.html');
     test.done();
   },
   toCr: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/toCr.css');
-    var expectedHtml = grunt.file.read('test/expected/toCr.html');
-    test.equal(grunt.file.read('tmp/toCr.css'), expectedCss, 'toCr.css');
-    test.equal(grunt.file.read('tmp/toCr.html'), expectedHtml, 'toCr.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/toCr.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/toCr.html'));
+    test.equal(grunt.file.read(path.join('tmp/toCr.css')), expectedCss, 'toCr.css');
+    test.equal(grunt.file.read(path.join('tmp/toCr.html')), expectedHtml, 'toCr.html');
     test.done();
   },
   toLf: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/toLf.css');
-    var expectedHtml = grunt.file.read('test/expected/toLf.html');
-    test.equal(grunt.file.read('tmp/toLf.css'), expectedCss, 'toLf.css');
-    test.equal(grunt.file.read('tmp/toLf.html'), expectedHtml, 'toLf.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/toLf.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/toLf.html'));
+    test.equal(grunt.file.read(path.join('tmp/toLf.css')), expectedCss, 'toLf.css');
+    test.equal(grunt.file.read(path.join('tmp/toLf.html')), expectedHtml, 'toLf.html');
     test.done();
   },
   toCrlf: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/toCrlf.css');
-    var expectedHtml = grunt.file.read('test/expected/toCrlf.html');
-    test.equal(grunt.file.read('tmp/toCrlf.css'), expectedCss, 'toCrlf.css');
-    test.equal(grunt.file.read('tmp/toCrlf.html'), expectedHtml, 'toCrlf.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/toCrlf.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/toCrlf.html'));
+    test.equal(grunt.file.read(path.join('tmp/toCrlf.css')), expectedCss, 'toCrlf.css');
+    test.equal(grunt.file.read(path.join('tmp/toCrlf.html')), expectedHtml, 'toCrlf.html');
     test.done();
   },
   cssprefix: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/cssprefix.css');
-    var expectedHtml = grunt.file.read('test/expected/cssprefix.html');
-    test.equal(grunt.file.read('tmp/cssprefix.css'), expectedCss, 'cssprefix.css');
-    test.equal(grunt.file.read('tmp/cssprefix.html'), expectedHtml, 'cssprefix.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/cssprefix.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/cssprefix.html'));
+    test.equal(grunt.file.read(path.join('tmp/cssprefix.css')), expectedCss, 'cssprefix.css');
+    test.equal(grunt.file.read(path.join('tmp/cssprefix.html')), expectedHtml, 'cssprefix.html');
     test.done();
   },
   csstemplate: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/csstemplate.css');
-    var expectedHtml = grunt.file.read('test/expected/csstemplate.html');
-    test.equal(grunt.file.read('tmp/csstemplate.css'), expectedCss, 'csstemplate.css');
-    test.equal(grunt.file.read('tmp/csstemplate.html'), expectedHtml, 'csstemplate.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/csstemplate.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/csstemplate.html'));
+    test.equal(grunt.file.read(path.join('tmp/csstemplate.css')), expectedCss, 'csstemplate.css');
+    test.equal(grunt.file.read(path.join('tmp/csstemplate.html')), expectedHtml, 'csstemplate.html');
     test.done();
   },
   previewtemplate: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/previewtemplate.css');
-    var expectedHtml = grunt.file.read('test/expected/previewtemplate.html');
-    test.equal(grunt.file.read('tmp/previewtemplate.css'), expectedCss, 'previewtemplate.css');
-    test.equal(grunt.file.read('tmp/previewtemplate.html'), expectedHtml, 'previewtemplate.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/previewtemplate.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/previewtemplate.html'));
+    test.equal(grunt.file.read(path.join('tmp/previewtemplate.css')), expectedCss, 'previewtemplate.css');
+    test.equal(grunt.file.read(path.join('tmp/previewtemplate.html')), expectedHtml, 'previewtemplate.html');
     test.done();
   },
   noPreviewhtml: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/noPreviewhtml.css');
-    test.equal(grunt.file.read('tmp/noPreviewhtml.css'), expectedCss, 'noPreviewhtml.css');
+    var expectedCss = grunt.file.read(path.join('test/expected/noPreviewhtml.css'));
+    test.equal(grunt.file.read(path.join('tmp/noPreviewhtml.css')), expectedCss, 'noPreviewhtml.css');
     test.ok(!grunt.file.exists('test/expected/noPreviewhtml.html'), 'noPreviewhtml.html should not exist');
     test.done();
   },
   minifycss: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/minifycss.css');
-    var expectedHtml = grunt.file.read('test/expected/minifycss.html');
-    test.equal(grunt.file.read('tmp/minifycss.css'), expectedCss, 'minifycss.css');
-    test.equal(grunt.file.read('tmp/minifycss.html'), expectedHtml, 'minifycss.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/minifycss.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/minifycss.html'));
+    test.equal(grunt.file.read(path.join('tmp/minifycss.css')), expectedCss, 'minifycss.css');
+    test.equal(grunt.file.read(path.join('tmp/minifycss.html')), expectedHtml, 'minifycss.html');
     test.done();
   },
   banner: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/banner.css');
-    var expectedHtml = grunt.file.read('test/expected/banner.html');
-    test.equal(grunt.file.read('tmp/banner.css'), expectedCss, 'banner.css');
-    test.equal(grunt.file.read('tmp/banner.html'), expectedHtml, 'banner.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/banner.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/banner.html'));
+    test.equal(grunt.file.read(path.join('tmp/banner.css')), expectedCss, 'banner.css');
+    test.equal(grunt.file.read(path.join('tmp/banner.html')), expectedHtml, 'banner.html');
     test.done();
   },
   bannerminifycss: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/bannerminifycss.css');
-    var expectedHtml = grunt.file.read('test/expected/bannerminifycss.html');
-    test.equal(grunt.file.read('tmp/bannerminifycss.css'), expectedCss, 'bannerminifycss.css');
-    test.equal(grunt.file.read('tmp/bannerminifycss.html'), expectedHtml, 'bannerminifycss.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/bannerminifycss.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/bannerminifycss.html'));
+    test.equal(grunt.file.read(path.join('tmp/bannerminifycss.css')), expectedCss, 'bannerminifycss.css');
+    test.equal(grunt.file.read(path.join('tmp/bannerminifycss.html')), expectedHtml, 'bannerminifycss.html');
     test.done();
   },
   footer: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/footer.css');
-    var expectedHtml = grunt.file.read('test/expected/footer.html');
-    test.equal(grunt.file.read('tmp/footer.css'), expectedCss, 'footer.css');
-    test.equal(grunt.file.read('tmp/footer.html'), expectedHtml, 'footer.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/footer.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/footer.html'));
+    test.equal(grunt.file.read(path.join('tmp/footer.css')), expectedCss, 'footer.css');
+    test.equal(grunt.file.read(path.join('tmp/footer.html')), expectedHtml, 'footer.html');
     test.done();
   },
   footerminifycss: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/footerminifycss.css');
-    var expectedHtml = grunt.file.read('test/expected/footerminifycss.html');
-    test.equal(grunt.file.read('tmp/footerminifycss.css'), expectedCss, 'footerminifycss.css');
-    test.equal(grunt.file.read('tmp/footerminifycss.html'), expectedHtml, 'footerminifycss.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/footerminifycss.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/footerminifycss.html'));
+    test.equal(grunt.file.read(path.join('tmp/footerminifycss.css')), expectedCss, 'footerminifycss.css');
+    test.equal(grunt.file.read(path.join('tmp/footerminifycss.html')), expectedHtml, 'footerminifycss.html');
     test.done();
   },
   bannerfooter: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/bannerfooter.css');
-    var expectedHtml = grunt.file.read('test/expected/bannerfooter.html');
-    test.equal(grunt.file.read('tmp/bannerfooter.css'), expectedCss, 'bannerfooter.css');
-    test.equal(grunt.file.read('tmp/bannerfooter.html'), expectedHtml, 'bannerfooter.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/bannerfooter.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/bannerfooter.html'));
+    test.equal(grunt.file.read(path.join('tmp/bannerfooter.css')), expectedCss, 'bannerfooter.css');
+    test.equal(grunt.file.read(path.join('tmp/bannerfooter.html')), expectedHtml, 'bannerfooter.html');
     test.done();
   },
   bannerfooterminifycss: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/bannerfooterminifycss.css');
-    var expectedHtml = grunt.file.read('test/expected/bannerfooterminifycss.html');
-    test.equal(grunt.file.read('tmp/bannerfooterminifycss.css'), expectedCss, 'bannerfooterminifycss.css');
-    test.equal(grunt.file.read('tmp/bannerfooterminifycss.html'), expectedHtml, 'bannerfooterminifycss.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/bannerfooterminifycss.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/bannerfooterminifycss.html'));
+    test.equal(grunt.file.read(path.join('tmp/bannerfooterminifycss.css')), expectedCss, 'bannerfooterminifycss.css');
+    test.equal(grunt.file.read(path.join('tmp/bannerfooterminifycss.html')), expectedHtml, 'bannerfooterminifycss.html');
     test.done();
   },
   insertfinalnewline: function (test) {
     test.expect(2);
-    var expectedCss = grunt.file.read('test/expected/insertfinalnewline.css');
-    var expectedHtml = grunt.file.read('test/expected/insertfinalnewline.html');
-    test.equal(grunt.file.read('tmp/insertfinalnewline.css'), expectedCss, 'insertfinalnewline.css');
-    test.equal(grunt.file.read('tmp/insertfinalnewline.html'), expectedHtml, 'insertfinalnewline.html');
+    var expectedCss = grunt.file.read(path.join('test/expected/insertfinalnewline.css'));
+    var expectedHtml = grunt.file.read(path.join('test/expected/insertfinalnewline.html'));
+    test.equal(grunt.file.read(path.join('tmp/insertfinalnewline.css')), expectedCss, 'insertfinalnewline.css');
+    test.equal(grunt.file.read(path.join('tmp/insertfinalnewline.html')), expectedHtml, 'insertfinalnewline.html');
     test.done();
   }
 };
