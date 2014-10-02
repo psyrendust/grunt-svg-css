@@ -17,7 +17,6 @@ version: "{build}"
 branches:
   # whitelist
   only:
-    - master
     - develop
 
   # blacklist
