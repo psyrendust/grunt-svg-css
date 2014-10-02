@@ -140,10 +140,10 @@ module.exports = function(grunt) {
     // Only add banner and footer to css
     if (isCss) {
       if (options.banner && options.banner.length > 0) {
-        file = options.banner + eol + file;
+        file = options.banner.replace(newlinesReg, eol) + eol + file;
       }
       if (options.footer && options.footer.length > 0) {
-        file = file + eol + options.footer;
+        file = file + eol + options.footer.replace(newlinesReg, eol);
       }
     }
 
