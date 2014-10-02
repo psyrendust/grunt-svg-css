@@ -32,6 +32,9 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     svgcss: {
       defaultOptions: {
+        options: {
+          eol: 'lf'
+        },
         files: {
           'tmp/defaultOptions.css': ['test/fixtures/*.svg']
         }
@@ -65,6 +68,7 @@ module.exports = function(grunt) {
       },
       cssprefix: {
         options: {
+          eol: 'lf',
           cssprefix: 'glyphicon-',
           previewhtml: 'cssprefix.html'
         },
@@ -74,6 +78,7 @@ module.exports = function(grunt) {
       },
       csstemplate: {
         options: {
+          eol: 'lf',
           csstemplate: 'test/fixtures/css.hbs',
           previewhtml: 'csstemplate.html'
         },
@@ -83,6 +88,7 @@ module.exports = function(grunt) {
       },
       previewtemplate: {
         options: {
+          eol: 'lf',
           previewtemplate: 'test/fixtures/preview.hbs',
           previewhtml: 'previewtemplate.html'
         },
@@ -92,6 +98,7 @@ module.exports = function(grunt) {
       },
       noPreviewhtml: {
         options: {
+          eol: 'lf',
           previewhtml: null
         },
         files: {
@@ -100,6 +107,7 @@ module.exports = function(grunt) {
       },
       minifycss: {
         options: {
+          eol: 'lf',
           minifycss: true,
           csstemplate: 'test/fixtures/css.hbs',
           previewhtml: 'minifycss.html'
@@ -110,6 +118,7 @@ module.exports = function(grunt) {
       },
       banner: {
         options: {
+          eol: 'lf',
           banner: [
             '/*!',
             ' * Grunt SVG CSS',
@@ -127,6 +136,7 @@ module.exports = function(grunt) {
       },
       bannerminifycss: {
         options: {
+          eol: 'lf',
           banner: [
             '/*!',
             ' * Grunt SVG CSS',
@@ -145,6 +155,7 @@ module.exports = function(grunt) {
       },
       footer: {
         options: {
+          eol: 'lf',
           footer: [
             '/*!',
             ' * Licensed under the Apache v2.0 License',
@@ -159,6 +170,7 @@ module.exports = function(grunt) {
       },
       footerminifycss: {
         options: {
+          eol: 'lf',
           footer: [
             '/*!',
             ' * Licensed under the Apache v2.0 License',
@@ -174,6 +186,7 @@ module.exports = function(grunt) {
       },
       bannerfooter: {
         options: {
+          eol: 'lf',
           banner: [
             '/*!',
             ' * Grunt SVG CSS',
@@ -197,6 +210,7 @@ module.exports = function(grunt) {
       },
       bannerfooterminifycss: {
         options: {
+          eol: 'lf',
           banner: [
             '/*!',
             ' * Grunt SVG CSS',
@@ -221,6 +235,7 @@ module.exports = function(grunt) {
       },
       insertfinalnewline: {
         options: {
+          eol: 'lf',
           previewhtml: 'insertfinalnewline.html',
           insertfinalnewline: true
         },
