@@ -8,8 +8,6 @@
 #---------------------------------#
 #      general configuration      #
 #---------------------------------#
-project_id: "5wlnkm7cm54g53ln"
-
 # build version format
 version: "{build}"
 
