@@ -42,9 +42,13 @@
   },
   "keywords": [
     "grunt",
-    "svg",
+    "gruntplugin",
+    "grunticon",
     "css",
+    "icon",
+    "svg",
     "encodeURIComponent",
-    "data-uri"
+    "data-uri",
+    "datauri"
   ]
 }
