@@ -87,7 +87,7 @@ module.exports = function(grunt) {
    */
   function processSvgFile(filepath, options) {
     var data = fs.readFileSync(filepath).toString() || '';
-    var doc = new DOMParser().parseFromString(data ,'text/xml');
+    var doc = new DOMParser().parseFromString(data, 'text/xml');
     var svgel = doc.getElementsByTagName('svg')[0];
     var width = svgel.getAttribute('width');
     var height = svgel.getAttribute('height');
