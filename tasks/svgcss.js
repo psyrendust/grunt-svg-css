@@ -102,7 +102,7 @@ module.exports = function(grunt) {
     return {
       name: path.basename(filepath, '.svg'),
       datauri: buildSVGDataURI(data),
-      prefix: '.' + options.cssprefix,
+      prefix: options.rawcssprefix ? options.rawcssprefix : ('.' + options.cssprefix),
       prefixClass: options.cssprefix,
       width: width.replace(pxReg, '$1px'),
       height: height.replace(pxReg, '$1px')
