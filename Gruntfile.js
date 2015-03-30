@@ -242,6 +242,18 @@ module.exports = function(grunt) {
         files: {
           'tmp/insertfinalnewline.css': ['test/fixtures/*.svg']
         }
+      },
+      useViewBoxDimensions: {
+        options: {
+          eol: 'lf',
+          previewhtml: null,
+          cssprefix: 'icon-dims-',
+          csstemplate: 'test/fixtures/css.hbs',
+          useViewBoxDimensions: true
+        },
+        files: {
+          'tmp/useViewBoxDimensions.css': ['test/fixtures/*.svg']
+        }
       }
     },
 

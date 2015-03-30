@@ -154,5 +154,12 @@ exports.test = {
     test.equal(grunt.file.read(path.join('tmp/insertfinalnewline.css')), expectedCss, 'insertfinalnewline.css');
     test.equal(grunt.file.read(path.join('tmp/insertfinalnewline.html')), expectedHtml, 'insertfinalnewline.html');
     test.done();
+  },
+  useViewBoxDimensions: function (test) {
+    test.expect(2);
+    var expectedCss = grunt.file.read(path.join('test/expected/useViewBoxDimensions.css'));
+    test.equal(grunt.file.read(path.join('tmp/useViewBoxDimensions.css')), expectedCss, 'useViewBoxDimensions.css');
+    test.ok(!grunt.file.exists('test/expected/useViewBoxDimensions.html'), 'useViewBoxDimensions.html should not exist');
+    test.done();
   }
 };

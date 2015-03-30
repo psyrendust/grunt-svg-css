@@ -91,12 +91,22 @@ module.exports = function(grunt) {
     var svgel = doc.getElementsByTagName('svg')[0];
     var width = svgel.getAttribute('width');
     var height = svgel.getAttribute('height');
+    var viewBox = svgel.getAttribute('viewBox');
+    var viewBoxDims = viewBox.split(' ');
 
-    if (!width) {
-      width = options.defaultWidth;
-    }
-    if (!height) {
-      height = options.defaultHeight;
+
+    if (options.useViewBoxDimensions) {
+      width = viewBoxDims[2];
+      height = viewBoxDims[3];
+
+    } else {
+      if (!width) {
+        width = options.defaultWidth;
+      }
+
+      if (!height) {
+        height = options.defaultHeight;
+      }
     }
 
     return {
